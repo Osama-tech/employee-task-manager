@@ -16,7 +16,7 @@ staticfiles/
 media/
 
 # IDE
-.vscode/
+.cursor/
 .idea/
 
 # macOS
