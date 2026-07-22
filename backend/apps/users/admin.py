@@ -1,10 +1,11 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import User
 
 
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(BaseUserAdmin):
     list_display = (
         "username",
         "email",
@@ -25,4 +26,27 @@ class UserAdmin(admin.ModelAdmin):
 
     ordering = (
         "username",
+    )
+    fieldsets = BaseUserAdmin.fieldsets + (
+        (
+            "Employee information",
+            {
+                "fields": (
+                    "role",
+                    "department",
+                )
+            },
+        ),
+    )
+
+    add_fieldsets = BaseUserAdmin.add_fieldsets + (
+        (
+            "Employee information",
+            {
+                "fields": (
+                    "role",
+                    "department",
+                )
+            },
+        ),
     )
