@@ -42,4 +42,8 @@ urlpatterns = [
         TokenRefreshView.as_view(),
         name="token_refresh",
     ),
+
+    path("api/", 
+        include("apps.tasks.urls")
+    ),
 ]

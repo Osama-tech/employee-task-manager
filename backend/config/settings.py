@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "apps.users.apps.UsersConfig",
     "apps.departments.apps.DepartmentsConfig",
     "rest_framework",
+    "apps.tasks.apps.TasksConfig",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -136,6 +138,8 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 
 SIMPLE_JWT = {
