@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+
+<input type="text" ng-model="title">
+
+<ul>
+    <li ng-repeat="task in tasks">
+
+        {{task.title}} - {{task.status}}
+
+        <button
+            ng-if="task.status !== 'Completed'"
+            ng-click="completeTask(task)"
+        >
+            Complete
+        </button>
+
+    </li>
+</ul>
+
+<p ng-if="tasks.length === 0">
+    No tasks found.
+</p>
