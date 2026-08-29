@@ -5,7 +5,7 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.permissions import IsAuthenticated
-from apps.users.permissions import IsAdminOrReadOnly
+from apps.users.permissions import IsStaffOrReadOnly
 
 from .models import Department
 from .serializers import DepartmentSerializer
@@ -13,10 +13,10 @@ from .serializers import DepartmentSerializer
 class DepartmentListAPIView(ListCreateAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly]
 
 
 class DepartmentDetailAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly]

@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.viewsets import ModelViewSet
 
-from apps.users.permissions import IsAdminOrReadOnly
+from apps.users.permissions import IsStaffOrReadOnly
 
 from .models import Task
 from .serializers import TaskSerializer
@@ -11,7 +11,7 @@ from .serializers import TaskSerializer
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.select_related("department")
     serializer_class = TaskSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly]
 
     filter_backends = [
         DjangoFilterBackend,
@@ -39,4 +39,3 @@ class TaskViewSet(ModelViewSet):
     ]
 
     ordering = ["-created_at"]
-
