@@ -6,5 +6,8 @@ class Department(models.Model):
         unique=True,
     )
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
