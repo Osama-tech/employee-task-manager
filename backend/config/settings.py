@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "apps.departments.apps.DepartmentsConfig",
     "rest_framework",
     "apps.tasks.apps.TasksConfig",
+    "apps.dashboard.apps.DashboardConfig",
     "django_filters",
 ]
 

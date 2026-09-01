@@ -46,4 +46,9 @@ urlpatterns = [
     path("api/", 
         include("apps.tasks.urls")
     ),
+
+    path(
+        "api/dashboard/",
+        include("apps.dashboard.urls"),
+    ),
 ]
