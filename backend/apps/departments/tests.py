@@ -86,3 +86,19 @@ class DepartmentIntegrityTests(APITestCase):
 
         response = self.client.delete(f"/api/departments/{empty_department.id}/")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_deleting_protected_department_via_api_returns_400_not_500(self):
+        """Regression test: ProtectedError must surface as a clean 400
+        through the API, not an unhandled 500."""
+        User.objects.create_user(
+            username="emp",
+            password="pass12345",
+            role=Role.EMPLOYEE,
+            department=self.department,
+        )
+        self.client.force_authenticate(user=self.manager)
+
+        response = self.client.delete(f"/api/departments/{self.department.id}/")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("detail", response.data)
